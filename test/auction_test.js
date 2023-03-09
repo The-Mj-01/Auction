@@ -1,12 +1,12 @@
-const Auction = artifacts.require("Auction");
+const SimpleAuction = artifacts.require("SimpleAuction");
 const NFT = artifacts.require("MyNFT");
 const { time } = require('@openzeppelin/test-helpers'); // Import the time function from OpenZeppelin
 
 
 // Test Auction
-contract("Auction", accounts => {
+contract("SimpleAuction", accounts => {
 
-  let auction;
+  let simpleAuction;
   let nft;
 
   //accounts
@@ -17,11 +17,11 @@ contract("Auction", accounts => {
   //deploy NFT & Auction smart contract
   before(async () => {
     nft = await NFT.new("My NFT", "MNT", {from: owner});
-    auction = await Auction.new({from: owner});
+    simpleAuction = await SimpleAuction.new({from: owner});
   });
 
   //Create Auction test
-  it("should create an auction11", async () => {
+  it("should create an auction", async () => {
     const reservePrice = web3.utils.toWei("1", "ether");
 
     const startTime = Math.floor(Date.now() / 1000);
