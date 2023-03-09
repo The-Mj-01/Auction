@@ -1,11 +1,12 @@
 const Auction = artifacts.require("Auction");
 const NFT = artifacts.require("MyNFT");
+const { time } = require('@openzeppelin/test-helpers'); // Import the time function from OpenZeppelin
 
 
 // Test Auction
 contract("Auction", accounts => {
 
-  let Auction;
+  let auction;
   let nft;
 
   //accounts
@@ -16,7 +17,7 @@ contract("Auction", accounts => {
   //deploy NFT & Auction smart contract
   before(async () => {
     nft = await NFT.new("My NFT", "MNT", {from: owner});
-    Auction = await Auction.new({from: owner});
+    auction = await Auction.new({from: owner});
   });
 
   //Create Auction test
